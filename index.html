@@ -3,21 +3,38 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Formulario con CRUD</title>
+    <title>form Informacion Personal</title>
     <style>
     body {
         font-family: Arial, sans-serif;
         padding: 2rem;
         background-color: #f8f9fa;
     }
-    form {
-        max-width: 500px;
-        margin: auto;
-        background-color: white;
-        padding: 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+    .contenedor {
+      display: flex;
+      gap: 2rem;
     }
+
+    form#formulario {
+      flex: 0 0 33%;
+      box-sizing: border-box;
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      margin: 0; 
+    }
+
+    #tabla-datos {
+      flex: 1;
+      overflow-x: auto;
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
     label {
         display: block;
         margin-top: 1rem;
@@ -75,104 +92,102 @@
     </style>
 </head>
 <body>
-
-<main>
+    <main>
     <h1>Información Personal</h1>
-    <form id="formulario" onsubmit="enviar(event)">
-    <section>
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required />
-    </section>
+    <div class="contenedor">
+      <form id="formulario" onsubmit="enviar(event)">
+          <section>
+              <label for="nombre">Nombre:</label>
+              <input type="text" id="nombre" name="nombre" required />
+          </section>
 
-    <section>
-        <label for="edad">Edad:</label>
-        <input type="number" id="edad" name="edad" required />
-    </section>
+          <section>
+              <label for="edad">Edad:</label>
+              <input type="number" id="edad" name="edad" required />
+          </section>
 
-    <section>
-        <label for="sexo">Sexo:</label>
-        <select id="sexo" name="sexo" required>
-        <option value="" disabled selected>Elige una opción</option>
-        <option value="Femenino">Femenino</option>
-        <option value="Masculino">Masculino</option>
-        <option value="Otro">Otro</option>
-        </select>
-    </section>
+          <section>
+              <label for="sexo">Sexo:</label>
+              <select id="sexo" name="sexo" required>
+              <option value="" disabled selected>Elige una opción</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Otro">Otro</option>
+              </select>
+          </section>
 
-    <section>
-        <label for="fecha">Fecha de nacimiento:</label>
-        <input type="date" id="fecha" name="fecha" required />
-    </section>
+          <section>
+              <label for="fecha">Fecha de nacimiento:</label>
+              <input type="date" id="fecha" name="fecha" required />
+          </section>
 
-    <section>
-        <label for="estadoCivil">Estado Civil:</label>
-        <select id="estadoCivil" name="estadoCivil" required>
-        <option value="" disabled selected>Elige una opción</option>
-        <option value="Soltero(a)">Soltero(a)</option>
-        <option value="Casado(a)">Casado(a)</option>
-        <option value="Viudo(a)">Viudo(a)</option>
-        <option value="Separado(a)">Separado(a)</option>
-        </select>
-    </section>
+          <section>
+              <label for="estadoCivil">Estado Civil:</label>
+              <select id="estadoCivil" name="estadoCivil" required>
+              <option value="" disabled selected>Elige una opción</option>
+              <option value="Soltero(a)">Soltero(a)</option>
+              <option value="Casado(a)">Casado(a)</option>
+              <option value="Viudo(a)">Viudo(a)</option>
+              <option value="Separado(a)">Separado(a)</option>
+              </select>
+          </section>
 
-    <section>
-        <label for="ocupacion">Ocupación:</label>
-        <input type="text" id="ocupacion" name="ocupacion" required />
-    </section>
+          <section>
+              <label for="ocupacion">Ocupación:</label>
+              <input type="text" id="ocupacion" name="ocupacion" required />
+          </section>
 
-    <section>
-        <label for="comentario">Comentario:</label>
-        <textarea id="comentario" name="comentario" rows="4" required></textarea>
-    </section>
+          <section>
+              <label for="comentario">Comentario:</label>
+              <textarea id="comentario" name="comentario" rows="4" required></textarea>
+          </section>
 
-    <div class="botones">
-        <button type="reset" class="borrar">Borrar</button>
-        <button type="submit" class="enviar">Enviar</button>
+          <div class="botones">
+              <button type="reset" class="borrar">Borrar</button>
+              <button type="submit" class="enviar">Enviar</button>
+          </div>
+      </form>
+
+      <section id="tabla-datos">
+          <h2>Datos Ingresados</h2>
+          <table id="tabla">
+              <thead>
+              <tr>
+                  <th>Nombre</th>
+                  <th>Edad</th>
+                  <th>Sexo</th>
+                  <th>Acciones</th>
+              </tr>
+              </thead>
+              <tbody>
+              </tbody>
+          </table>
+      </section>
     </div>
-    </form>
-
-    <section id="tabla-datos">
-    <h2>Datos Ingresados</h2>
-    <table id="tabla">
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Edad</th>
-            <th>Sexo</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Las filas se agregarán dinámicamente aquí -->
-        </tbody>
-    </table>
-    </section>
-</main>
+    </main>
 
 <script>
 function enviar(event) {
     event.preventDefault();
 
-    const nombre = document.getElementById('nombre').value;
-    const edad = document.getElementById('edad').value;
-    const sexo = document.getElementById('sexo').value;
-    const fecha = document.getElementById('fecha').value;
-    const estadoCivil = document.getElementById('estadoCivil').value;
-    const ocupacion = document.getElementById('ocupacion').value;
-    const comentario = document.getElementById('comentario').value;
+    const nombre = document.querySelector('#nombre').value;
+    const edad = document.querySelector('#edad').value;
+    const sexo = document.querySelector('#sexo').value;
+    const fecha = document.querySelector('#fecha').value;
+    const estadoCivil = document.querySelector('#estadoCivil').value;
+    const ocupacion = document.querySelector('#ocupacion').value;
+    const comentario = document.querySelector('#comentario').value;
 
     if (nombre && edad && sexo && fecha && estadoCivil && ocupacion && comentario) {
-    agregarFila(nombre, edad, sexo, fecha, estadoCivil, ocupacion, comentario);
-    document.getElementById('formulario').reset();
+        agregarFila(nombre, edad, sexo, fecha, estadoCivil, ocupacion, comentario);
+        document.querySelector('#formulario').reset();
     } else {
-    alert('Por favor, completa todos los campos.');
+        alert('Por favor, completa todos los campos.');
     }
 }
-
 function agregarFila(nombre, edad, sexo) {
     const tabla = document.querySelector("#tabla tbody");
     const fila = document.createElement("tr");
-
-
 
     fila.innerHTML = `
     <td>${nombre}</td>
@@ -191,4 +206,4 @@ function eliminarFila(boton) {
 </script>
 
 </body>
-</html>
+</html
